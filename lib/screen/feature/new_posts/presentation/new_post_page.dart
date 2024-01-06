@@ -159,13 +159,15 @@ class _NewPostPageState extends State<NewPostPage> {
                             textScaleFactor: FontSizer.textScaleFactor(context),
                           ),
                           onPressed: () {
-                            final bool isNotEmptyImg =
-                                widget.model != null ? true : images.isNotEmpty;
                             if (_formKey.currentState?.validate() == true &&
-                                isNotEmptyImg) {
+                                images.isNotEmpty) {
                               if (widget.model != null) {
                                 context.read<NewPostCubit>().editData(
-                                      widget.model!,
+                                      widget.model!.copyWith(
+                                        title: _firstCon.text,
+                                        desc: _bigCon.text,
+                                        images: images,
+                                      ),
                                     );
                                 Navigator.pushAndRemoveUntil(
                                   context,

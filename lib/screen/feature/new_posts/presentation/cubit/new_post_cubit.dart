@@ -9,7 +9,7 @@ part 'new_post_cubit.freezed.dart';
 part 'new_post_state.dart';
 
 class NewPostCubit extends Cubit<NewPostState> {
-  NewPostCubit() : super(const NewPostState.initial()) {
+  NewPostCubit() : super(const NewPostState.loading()) {
     // clearData();
   }
 
@@ -30,8 +30,10 @@ class NewPostCubit extends Cubit<NewPostState> {
   getData() async {
     emit(const NewPostState.loading());
     try {
+      listOfPosts = [];
       var box = await Hive.openBox<NewPosterModel>('newPost');
       listOfPosts = box.values.toList();
+      log('data: listOfPosts: $listOfPosts ');
       emit(NewPostState.loaded(listOfPosts.reversed.toList()));
     } catch (e) {
       emit(NewPostState.error(e.toString()));
@@ -69,12 +71,10 @@ class NewPostCubit extends Cubit<NewPostState> {
     });
 
     var post = box.get(desiredKey);
-    log('data: post: $post ');
-    post?.title = model.title;
-    post?.desc = model.desc;
     post?.images = model.images;
+    post?.desc = model.desc;
+    post?.title = model.title;
     await post?.save();
-    log('data: post: ${box.getAt(0)} ');
   }
 
   clearData() async {

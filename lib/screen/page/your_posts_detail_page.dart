@@ -151,6 +151,20 @@ class YourPostsDetailPage extends StatelessWidget {
             backgroundColor: Colors.transparent,
             expandedHeight: 420,
             flexibleSpace: FlexibleSpaceBar(
+              expandedTitleScale: 1,
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 50),
+                child: Text(
+                  model.title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 46,
+                    fontFamily: 'Mulish',
+                    fontWeight: FontWeight.w700,
+                  ),
+                  textScaleFactor: FontSizer.textScaleFactor(context),
+                ),
+              ),
               background: Image.asset(
                 model.images.first,
                 width: double.maxFinite,
@@ -164,23 +178,25 @@ class YourPostsDetailPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Quantum Computing Breakthrough Promises to Change the Tech Landscape',
+                    model.title,
                     style: const TextStyle(
                       color: Color(0xFF181A1B),
                       fontSize: 19,
                       fontFamily: 'Mulish',
                       fontWeight: FontWeight.w900,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     textScaleFactor: FontSizer.textScaleFactor(context),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    'In whats being hailed as a landmark achievement in the field of computer science, researchers at TechAdvance Institute have successfully developed a quantum computer capable of solving complex problems in mere seconds, a task that would take traditional computers thousands of years. This groundbreaking discovery is set to revolutionize industries across the globe, from healthcare, where it could lead to advancements in drug discovery, to cybersecurity, offering unprecedented levels of data encryption.',
-                    style: TextStyle(
+                  Text(
+                    model.desc,
+                    style: const TextStyle(
                       color: Color(0xFF63717B),
                       fontSize: 15,
                       fontFamily: 'Mulish',
                       fontWeight: FontWeight.w400,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SizedBox(height: 16),
