@@ -8,6 +8,7 @@ import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/buttons.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/font_sizer.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
+import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:bluescope_news_244/widgets/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,6 +39,7 @@ class _NewPostPageState extends State<NewPostPage> {
   @override
   void initState() {
     super.initState();
+    images = widget.model?.images ?? [];
     _firstCon = TextEditingController(text: widget.model?.title ?? '');
     _bigCon = TextEditingController(text: widget.model?.desc ?? '');
     _formKey = GlobalKey<FormState>();
@@ -82,7 +84,7 @@ class _NewPostPageState extends State<NewPostPage> {
                     await getImage();
                   },
                   error: error,
-                  images: widget.model != null ? widget.model!.images : images,
+                  images: images,
                   onTap: (index) {
                     images.removeAt(index);
                     setState(() {});
@@ -113,20 +115,27 @@ class _NewPostPageState extends State<NewPostPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(
-                                Icons.clear,
-                                color: Colors.blue,
+                              Image.asset(
+                                AppImages.camera,
+                                scale: 5,
                               ),
-                              Text(
-                                'Add photo',
-                                style: const TextStyle(
-                                  color: Color(0xFF181A1B),
-                                  fontSize: 19,
-                                  fontFamily: 'Mulish',
-                                  fontWeight: FontWeight.w900,
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Flexible(
+                                child: FittedBox(
+                                  child: Text(
+                                    'Add photo',
+                                    style: const TextStyle(
+                                      color: Color(0xFF181A1B),
+                                      fontSize: 19,
+                                      fontFamily: 'Mulish',
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                    textScaleFactor:
+                                        FontSizer.textScaleFactor(context),
+                                  ),
                                 ),
-                                textScaleFactor:
-                                    FontSizer.textScaleFactor(context),
                               ),
                             ],
                           ),
@@ -294,20 +303,17 @@ class PickedImagesWidget extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Icon(
-                          Icons.clear,
-                          color: Colors.white,
-                        ),
+                    SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: Icon(
+                        Icons.clear,
+                        color: Colors.white,
                       ),
                     ),
                   ],

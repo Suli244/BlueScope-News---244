@@ -15,6 +15,7 @@ class AppImages {
   static const String arrowLeftIcon = 'assets/images/arrow_left_icon.png';  
   static const String arrowRightIcon = 'assets/images/arrow_right_icon.png';  
   static const String basketIcon = 'assets/images/basket_icon.png';  
+  static const String camera = 'assets/images/camera.png';  
   static const String cameraIcon = 'assets/images/camera_icon.png';  
   static const String clockIcon = 'assets/images/clock_icon.png';  
   static const String editActivIcon = 'assets/images/edit_activ_icon.png';  

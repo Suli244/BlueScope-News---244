@@ -15,7 +15,7 @@ final class AddPostBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier customValues = ValueNotifier<String>('');
+    ValueNotifier customValues = ValueNotifier<String>(bigCon.text);
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
