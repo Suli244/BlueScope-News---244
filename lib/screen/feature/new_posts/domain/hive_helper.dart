@@ -25,6 +25,11 @@ class HiveHelperBla {
     return box.values.toList();
   }
 
+  clearData() async {
+    var box = await Hive.openBox<NewPosterModel>('newPost');
+    await box.clear();
+  }
+
   editData(NewPosterModel model) async {
     var box = await Hive.openBox<NewPosterModel>('newPost');
     final Map<dynamic, NewPosterModel> deliveriesMap = box.toMap();

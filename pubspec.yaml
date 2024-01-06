@@ -50,6 +50,7 @@ dependencies:
   hive: ^2.2.3
   image_picker: ^1.0.6
   path_provider: ^2.1.1
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:
