@@ -1,12 +1,14 @@
+import 'package:bluescope_news_244/screen/feature/new_posts/domain/hive_helper.dart';
+import 'package:bluescope_news_244/screen/feature/new_posts/presentation/cubit/new_post_cubit.dart';
+import 'package:bluescope_news_244/screen/feature/new_posts/presentation/new_post_page.dart';
 import 'package:bluescope_news_244/screen/page/home_page.dart';
-import 'package:bluescope_news_244/screen/page/new_post_page.dart';
 import 'package:bluescope_news_244/screen/page/saved_page.dart';
 import 'package:bluescope_news_244/screen/page/settings_page.dart';
 import 'package:bluescope_news_244/screen/page/your_posts_page.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavigatorScreen extends StatefulWidget {
   const BottomNavigatorScreen({Key? key}) : super(key: key);
@@ -19,27 +21,18 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[index],
-      extendBody: true,
-      bottomNavigationBar: Container(
-        height: 106,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              width: 1,
-              color: AppColorsBlueScopeNews.colorD9E6F0,
-            ),
-          ),
-        ),
-        child: BottomNavigationBar(
-          selectedItemColor: AppColorsBlueScopeNews.color2D52D6,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => NewPostCubit(HiveHelperBla()),
+        )
+      ],
+      child: Scaffold(
+        body: pages[index],
+        extendBody: true,
+        bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
-          selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 19,
-          ),
+          type: BottomNavigationBarType.fixed,
           unselectedFontSize: 0,
           selectedFontSize: 0,
           currentIndex: index,
@@ -50,9 +43,35 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
           },
           items: [
             BottomNavigationBarItem(
-              label: index == 0 ? '•' : '',
+              label: '•',
               icon: Image.asset(
                 AppImages.homeIcon,
+                width: 25,
+                color: AppColorsBlueScopeNews.color64717B,
+              ),
+              activeIcon: Image.asset(
+                AppImages.homeActivIcon,
+                color: AppColorsBlueScopeNews.color2D52D6,
+                width: 25,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: '•',
+              icon: Image.asset(
+                AppImages.heartIcon,
+                width: 25,
+                color: AppColorsBlueScopeNews.color64717B,
+              ),
+              activeIcon: Image.asset(
+                AppImages.heartActivIcon,
+                color: AppColorsBlueScopeNews.color2D52D6,
+                width: 25,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: '•',
+              icon: Image.asset(
+                AppImages.editIcon,
                 width: 25,
                 color: AppColorsBlueScopeNews.color64717B,
               ),
