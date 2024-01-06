@@ -21,8 +21,10 @@ class _YourPostsPageState extends State<YourPostsPage> {
   @override
   void initState() {
     super.initState();
-    context.read<NewPostCubit>().getData();
+    getData();
   }
+
+  getData() => context.read<NewPostCubit>().getData();
 
   @override
   Widget build(BuildContext context) {
@@ -31,57 +33,60 @@ class _YourPostsPageState extends State<YourPostsPage> {
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.h),
           child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Your posts',
-                  style: AppTextStylesBlueScopeNews.s46W700(),
-                ),
-                const SizedBox(height: 32),
-                TextFieldWidgetSearch(
-                  onChanged: (p0) =>
-                      context.read<NewPostCubit>().searchList(p0),
-                ),
-                const SizedBox(height: 20),
-                Expanded(
-                  child: BlocBuilder<NewPostCubit, NewPostState>(
-                    builder: (context, state) {
-                      return state.when(
-                        initial: () {
-                          return const SizedBox(height: 10);
-                        },
-                        loading: () {
-                          return const SizedBox(height: 10);
-                        },
-                        error: (v) {
-                          return const SizedBox(height: 10);
-                        },
-                        loaded: (models) {
-                          return models.isEmpty
-                              ? const Center(
-                                  child: Text(
-                                    'Нou have no published posts',
-                                  ),
-                                )
-                              : ListView.separated(
-                                  itemCount: models.length,
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return const SizedBox(height: 32);
-                                  },
-                                  itemBuilder:
-                                      (BuildContext context, int index) =>
-                                          HomeItemWidget(
-                                    models[index],
-                                  ),
-                                );
-                        },
-                      );
-                    },
+            child: RefreshIndicator.adaptive(
+              onRefresh: () async => getData(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Your posts',
+                    style: AppTextStylesBlueScopeNews.s46W700(),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 32),
+                  TextFieldWidgetSearch(
+                    onChanged: (p0) =>
+                        context.read<NewPostCubit>().searchList(p0),
+                  ),
+                  const SizedBox(height: 20),
+                  Expanded(
+                    child: BlocBuilder<NewPostCubit, NewPostState>(
+                      builder: (context, state) {
+                        return state.when(
+                          initial: () {
+                            return const SizedBox(height: 10);
+                          },
+                          loading: () {
+                            return const SizedBox(height: 10);
+                          },
+                          error: (v) {
+                            return const SizedBox(height: 10);
+                          },
+                          loaded: (models) {
+                            return models.isEmpty
+                                ? const Center(
+                                    child: Text(
+                                      'Нou have no published posts',
+                                    ),
+                                  )
+                                : ListView.separated(
+                                    itemCount: models.length,
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return const SizedBox(height: 32);
+                                    },
+                                    itemBuilder:
+                                        (BuildContext context, int index) =>
+                                            HomeItemWidget(
+                                      models[index],
+                                    ),
+                                  );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

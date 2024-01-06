@@ -8,14 +8,17 @@ import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigatorScreen extends StatefulWidget {
-  const BottomNavigatorScreen({Key? key}) : super(key: key);
+  const BottomNavigatorScreen({Key? key, this.currentIndex = 0})
+      : super(key: key);
+
+  final int currentIndex;
 
   @override
   State<BottomNavigatorScreen> createState() => _BottomNavigatorState();
 }
 
 class _BottomNavigatorState extends State<BottomNavigatorScreen> {
-  int index = 0;
+  late int index = widget.currentIndex;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
