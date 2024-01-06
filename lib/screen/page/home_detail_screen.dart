@@ -109,15 +109,20 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
             automaticallyImplyLeading: false,
             title: Align(
               alignment: Alignment.centerLeft,
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(
-                  Icons.arrow_back,
-                  size: 30.sp,
-                  color: Colors.white,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      size: 30.sp,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
             actions: [
@@ -150,10 +155,44 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
             backgroundColor: Colors.white,
             expandedHeight: 350.h,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                url,
-                width: double.maxFinite,
-                fit: BoxFit.cover,
+              background: Stack(
+                children: [
+                  Image.network(
+                    url,
+                    width: double.infinity,
+                    height: 360.h,
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 360.h,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.transparent,
+                          Colors.transparent,
+                          Colors.transparent,
+                          Colors.black.withOpacity(0.4),
+                          Colors.black.withOpacity(0.8),
+                          Colors.black,
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 16.w,
+                    right: 16.w,
+                    bottom: 100.h,
+                    child: Text(
+                      'What to know about Mycoplasma, the bacteria behind recent spikes in pneumonia cases in Ohio and overseas',
+                      style: AppTextStylesBlueScopeNews.s28W700(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
