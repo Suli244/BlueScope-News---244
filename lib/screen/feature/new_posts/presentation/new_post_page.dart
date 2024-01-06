@@ -202,7 +202,9 @@ class _NewPostPageState extends State<NewPostPage> {
 
                               _firstCon.clear();
                               _bigCon.clear();
-                            } else {
+                              images.clear();
+                              setState(() {});
+                            } else if (images.isEmpty) {
                               error = true;
                               setState(() {});
                               Flushbar(
@@ -225,7 +227,7 @@ class _NewPostPageState extends State<NewPostPage> {
                                 duration: const Duration(seconds: 2),
                                 padding: const EdgeInsets.all(24),
                                 messageText: Text(
-                                  'Choose Phote',
+                                  'Choose Photo',
                                   style: AppTextStylesBlueScopeNews.s15W700(
                                     color: Colors.white,
                                   ),
