@@ -35,6 +35,7 @@ class AppImages {
   static const String onboardingOne = 'assets/images/onboarding_one.png';  
   static const String onboardingTrhee = 'assets/images/onboarding_trhee.png';  
   static const String onboardingTwo = 'assets/images/onboarding_two.png';  
+  static const String premiumImage = 'assets/images/premium_image.png';  
   static const String searchIcon = 'assets/images/search_icon.png';  
   static const String searchSettingIcon = 'assets/images/search_setting_icon.png';  
   static const String settingFilledIcon = 'assets/images/setting_filled_icon.png';  

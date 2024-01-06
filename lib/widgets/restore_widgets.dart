@@ -1,3 +1,4 @@
+import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
 import 'package:bluescope_news_244/utils/premium/premium.dart';
 import 'package:bluescope_news_244/utils/urls.dart';
@@ -12,7 +13,7 @@ class RestoreButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
           InkWell(
@@ -29,21 +30,21 @@ class RestoreButtons extends StatelessWidget {
             },
             child: Text(
               'Privacy policy',
-              style: AppTextStylesBlueScopeNews.s12W400(
-                color: Colors.amber,
+              style: AppTextStylesBlueScopeNews.s15W400(
+                color: AppColorsBlueScopeNews.color191B1B,
               ),
             ),
           ),
           const Spacer(),
           InkWell(
             onTap: () async {
-              // await PremiumWebBlueScopeNews.buyTradeFuncRestoreContactPlink(
-              //     context);
+              await PremiumWebBlueScopeNews.buyTradeFuncRestoreBlueScope(
+                  context);
             },
             child: Text(
-              'Restore purchases',
-              style: AppTextStylesBlueScopeNews.s12W400(
-                color: Colors.amber,
+              'Restore',
+              style: AppTextStylesBlueScopeNews.s15W400(
+                color: AppColorsBlueScopeNews.color191B1B,
               ),
             ),
           ),
@@ -63,7 +64,7 @@ class RestoreButtons extends StatelessWidget {
             child: Text(
               'Terms of use',
               style: AppTextStylesBlueScopeNews.s15W400(
-                color: Colors.amber,
+                color: AppColorsBlueScopeNews.color191B1B,
               ),
             ),
           ),

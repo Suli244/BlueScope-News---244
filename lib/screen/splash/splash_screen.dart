@@ -1,4 +1,5 @@
 import 'package:bluescope_news_244/screen/bottom_navigation_bar/bottom_naviator_screen.dart';
+import 'package:bluescope_news_244/screen/onboarding/onboarding_screen.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:bluescope_news_244/utils/premium/first_open.dart';
 import 'package:flutter/material.dart';
@@ -41,39 +42,30 @@ class _SplashScreenState extends State<SplashScreen> {
 
   toGoOnBoarBlueScope() async {
     await Future.delayed(const Duration(milliseconds: 1450));
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const BottomNavigatorScreen(),
-      ),
-    );
-
-    //   final isFirst = await FirstOpenBlueScopeNews.getFirstOpen();
-    //   if (!isFirst) {
-    //     Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(
-    //         builder: (context) => const OnboardingScreen(),
-    //       ),
-    //     );
-    //     await Future.delayed(const Duration(seconds: 8));
-    //     try {
-    //       final InAppReview inAppReview = InAppReview.instance;
-
-    //       if (await inAppReview.isAvailable()) {
-    //         inAppReview.requestReview();
-    //       }
-    //     } catch (e) {
-    //       throw Exception(e);
-    //     }
-    //   } else {
-    //     Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(
-    //         builder: (context) => const BottomNavigatorScreen(),
-    //       ),
-    //     );
-    // }
+    final isFirst = await FirstOpenBlueScopeNews.getFirstOpen();
+    if (!isFirst) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OnboardingScreen(),
+        ),
+      );
+      await Future.delayed(const Duration(seconds: 8));
+      try {
+        final InAppReview inAppReview = InAppReview.instance;
+        if (await inAppReview.isAvailable()) {
+          inAppReview.requestReview();
+        }
+      } catch (e) {
+        throw Exception(e);
+      }
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const BottomNavigatorScreen(),
+        ),
+      );
+    }
   }
 }
