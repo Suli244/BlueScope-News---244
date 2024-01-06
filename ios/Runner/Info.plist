@@ -22,6 +22,10 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Required for Gallery</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Required for Gallery</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

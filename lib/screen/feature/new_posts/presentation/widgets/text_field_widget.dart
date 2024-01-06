@@ -34,6 +34,13 @@ final class TextFieldWidget extends StatelessWidget {
           width: 1.h,
         ),
       );
+  OutlineInputBorder get _errorBorder => OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: BorderSide(
+          color: const Color(0xFFFF0000),
+          width: 1.h,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +50,12 @@ final class TextFieldWidget extends StatelessWidget {
       onChanged: onChanged,
       controller: controller,
       onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Required Field';
+        }
+        return null;
+      },
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -53,7 +66,9 @@ final class TextFieldWidget extends StatelessWidget {
         enabledBorder: _border,
         contentPadding: contentPadding,
         focusedBorder: _border,
-        focusedErrorBorder: _border,
+        focusedErrorBorder: _errorBorder,
+        errorBorder: _errorBorder,
+        border: _border,
         labelStyle: const TextStyle(
           color: Color(0xFF181A1B),
           fontSize: 15,

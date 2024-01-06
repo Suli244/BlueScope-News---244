@@ -22,4 +22,9 @@ class NewPosterModel extends HiveObject {
     required this.desc,
     required this.images,
   });
+
+  @override
+  String toString() {
+    return 'NewPosterModel(id: $id, title: $title, desc: $desc, images: $images)';
+  }
 }
