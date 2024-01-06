@@ -202,7 +202,6 @@ class _NewPostPageState extends State<NewPostPage> {
 
                               _firstCon.clear();
                               _bigCon.clear();
-                              images.clear();
                               setState(() {});
                             } else if (images.isEmpty) {
                               error = true;
