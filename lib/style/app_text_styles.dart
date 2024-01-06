@@ -76,4 +76,10 @@ abstract class AppTextStylesBlueScopeNews {
         fontSize: 46.sp,
         fontWeight: FontWeight.w700,
       );
+  static TextStyle s57W700({Color? color}) => TextStyle(
+        fontFamily: fonst,
+        color: color ?? Colors.black,
+        fontSize: 57.sp,
+        fontWeight: FontWeight.w700,
+      );
 }
