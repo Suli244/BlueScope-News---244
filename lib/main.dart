@@ -1,5 +1,6 @@
 import 'package:apphud/apphud.dart';
 import 'package:bluescope_news_244/core/hive/hive_helper.dart';
+import 'package:bluescope_news_244/logic/models/saved_model/saved_model.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/data/new_poster_model.dart';
 import 'package:bluescope_news_244/screen/splash/splash_screen.dart';
 import 'package:bluescope_news_244/utils/urls.dart';
@@ -14,6 +15,7 @@ void main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Hive.initFlutter();
   Hive.registerAdapter(NewPosterModelAdapter());
+  Hive.registerAdapter(SavedModelAdapter());
   runApp(const MyApp());
 }
 
