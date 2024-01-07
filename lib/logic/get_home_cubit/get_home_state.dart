@@ -4,5 +4,5 @@ part of 'get_home_cubit.dart';
 class GetHomeState with _$GetHomeState {
   const factory GetHomeState.loading() = _Loading;
   const factory GetHomeState.error(String error) = _Error;
-  const factory GetHomeState.success() = _Success;
+  const factory GetHomeState.success(List<GetNewsModel> model) = _Success;
 }
