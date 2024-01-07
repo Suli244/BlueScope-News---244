@@ -152,21 +152,6 @@ class HomeItemWidget extends StatelessWidget {
                         textScaleFactor: FontSizer.textScaleFactor(context),
                       ),
                     ),
-                    Image.asset(
-                      AppImages.eyeIcon,
-                      height: 16.h,
-                      color: AppColorsBlueScopeNews.color64717B,
-                    ),
-                    const SizedBox(width: 3),
-                    Expanded(
-                      child: Text(
-                        '1006 views',
-                        style: AppTextStylesBlueScopeNews.s12W500(
-                          color: AppColorsBlueScopeNews.color64717B,
-                        ),
-                        textScaleFactor: FontSizer.textScaleFactor(context),
-                      ),
-                    ),
                   ],
                 )
               ],

@@ -7,8 +7,10 @@ import 'package:bluescope_news_244/screen/feature/new_posts/presentation/cubit/n
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/add_post_body.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/buttons.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/font_sizer.dart';
+import 'package:bluescope_news_244/screen/premium/premium_screen.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
+import 'package:bluescope_news_244/utils/premium/premium.dart';
 import 'package:bluescope_news_244/widgets/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -167,57 +169,19 @@ class _NewPostPageState extends State<NewPostPage> {
                             ),
                             textScaleFactor: FontSizer.textScaleFactor(context),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             imagesToSave = images;
-                            if (_formKey.currentState?.validate() == true &&
-                                images.isNotEmpty) {
-                              if (widget.model != null) {
-                                context.read<NewPostCubit>().editData(
-                                      widget.model!.copyWith(
-                                        title: _firstCon.text,
-                                        desc: _bigCon.text,
-                                        images: imagesToSave,
-                                      ),
-                                    );
-                                Navigator.pushAndRemoveUntil(
-                                  context,
-                                  PageRouteBuilder(
-                                    pageBuilder: (context, animation,
-                                            secondaryAnimation) =>
-                                        const BottomNavigatorScreen(
-                                            currentIndex: 3),
-                                    transitionsBuilder: (context, animation,
-                                        secondaryAnimation, child) {
-                                      return child;
-                                    },
-                                    transitionDuration: const Duration(
-                                      seconds: 0,
-                                    ), // Устанавливаем продолжительность анимации в 0 секунд
+                            if (await PremiumWebBlueScopeNews.getPremium()) {
+                              showDetail();
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (cotext) => const PremiumScreen(
+                                    isClose: true,
                                   ),
-                                  (route) => false,
-                                ).then(
-                                  (value) =>
-                                      context.read<NewPostCubit>().getData(),
-                                );
-                              } else {
-                                context.read<NewPostCubit>().saveData(
-                                      NewPosterModel(
-                                        id: id.nextInt(10000),
-                                        title: _firstCon.text,
-                                        desc: _bigCon.text,
-                                        images: imagesToSave,
-                                        dateTime: DateTime.now(),
-                                      ),
-                                    );
-                              }
-
-                              _firstCon.clear();
-                              _bigCon.clear();
-                              setState(() {});
-                            } else if (images.isEmpty) {
-                              error = true;
-                              setState(() {});
-                              ShowMessage.show(context);
+                                ),
+                              );
                             }
                           },
                         ),
@@ -240,6 +204,55 @@ class _NewPostPageState extends State<NewPostPage> {
     if (test != null) {
       images.add(test.path);
       setState(() {});
+    }
+  }
+
+  void showDetail() {
+    if (_formKey.currentState?.validate() == true && images.isNotEmpty) {
+      if (widget.model != null) {
+        context.read<NewPostCubit>().editData(
+              widget.model!.copyWith(
+                title: _firstCon.text,
+                desc: _bigCon.text,
+                images: imagesToSave,
+              ),
+            );
+        Navigator.pushAndRemoveUntil(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                const BottomNavigatorScreen(currentIndex: 3),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return child;
+            },
+            transitionDuration: const Duration(
+              seconds: 0,
+            ), // Устанавливаем продолжительность анимации в 0 секунд
+          ),
+          (route) => false,
+        ).then(
+          (value) => context.read<NewPostCubit>().getData(),
+        );
+      } else {
+        context.read<NewPostCubit>().saveData(
+              NewPosterModel(
+                id: id.nextInt(10000),
+                title: _firstCon.text,
+                desc: _bigCon.text,
+                images: imagesToSave,
+                dateTime: DateTime.now(),
+              ),
+            );
+      }
+
+      _firstCon.clear();
+      _bigCon.clear();
+      setState(() {});
+    } else if (images.isEmpty) {
+      error = true;
+      setState(() {});
+      ShowMessage.show(context);
     }
   }
 }
