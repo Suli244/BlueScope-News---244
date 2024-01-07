@@ -20,6 +20,7 @@ class NewPosterModelAdapter extends TypeAdapter<NewPosterModel> {
       id: fields[0] as int,
       title: fields[1] as String,
       desc: fields[2] as String,
+      dateTime: fields[4] as DateTime,
       images: (fields[3] as List).cast<String>(),
     );
   }
@@ -27,7 +28,7 @@ class NewPosterModelAdapter extends TypeAdapter<NewPosterModel> {
   @override
   void write(BinaryWriter writer, NewPosterModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class NewPosterModelAdapter extends TypeAdapter<NewPosterModel> {
       ..writeByte(2)
       ..write(obj.desc)
       ..writeByte(3)
-      ..write(obj.images);
+      ..write(obj.images)
+      ..writeByte(4)
+      ..write(obj.dateTime);
   }
 
   @override

@@ -206,6 +206,7 @@ class _NewPostPageState extends State<NewPostPage> {
                                         title: _firstCon.text,
                                         desc: _bigCon.text,
                                         images: imagesToSave,
+                                        dateTime: DateTime.now(),
                                       ),
                                     );
                               }
