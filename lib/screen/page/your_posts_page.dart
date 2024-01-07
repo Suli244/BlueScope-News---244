@@ -145,7 +145,7 @@ class HomeItemWidget extends StatelessWidget {
                     const SizedBox(width: 3),
                     Expanded(
                       child: Text(
-                        '1 hours ago',
+                        formatTimeAgo(model.dateTime),
                         style: AppTextStylesBlueScopeNews.s12W500(
                           color: AppColorsBlueScopeNews.color64717B,
                         ),

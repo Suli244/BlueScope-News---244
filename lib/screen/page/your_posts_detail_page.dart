@@ -5,6 +5,7 @@ import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets
 import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class YourPostsDetailPage extends StatelessWidget {
   const YourPostsDetailPage(this.model, {super.key});
@@ -57,11 +58,11 @@ class YourPostsDetailPage extends StatelessWidget {
                               children: [
                                 Image.asset(AppImages.clockIcon),
                                 const SizedBox(width: 10),
-                                const Flexible(
+                                Flexible(
                                   child: FittedBox(
                                     child: Text(
-                                      '3 hours ago',
-                                      style: TextStyle(
+                                      formatTimeAgo(model.dateTime),
+                                      style: const TextStyle(
                                         color: Color(0xFF181A1B),
                                         fontSize: 12,
                                         fontFamily: 'Mulish',
@@ -193,6 +194,7 @@ class YourPostsDetailPage extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                       overflow: TextOverflow.ellipsis,
                     ),
+                    maxLines: 5,
                     textScaleFactor: FontSizer.textScaleFactor(context),
                   ),
                   const SizedBox(height: 5),
@@ -207,28 +209,32 @@ class YourPostsDetailPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Wrap(
-                    spacing: 20,
-                    runSpacing: 20,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: model.images
-                        .map(
-                          (image) => Container(
-                            width: 171,
-                            height: 171,
-                            padding: const EdgeInsets.all(8),
-                            decoration: ShapeDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(image),
-                                fit: BoxFit.cover,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
+                  GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: model.images.length,
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        width: 171,
+                        height: 171,
+                        padding: const EdgeInsets.all(8),
+                        decoration: ShapeDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(model.images[index]),
+                            fit: BoxFit.cover,
                           ),
-                        )
-                        .toList(),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 40),
                 ],
@@ -254,4 +260,18 @@ String truncateString(String text, int maxCharacters) {
   }
 
   return '$truncatedText...';
+}
+
+String formatTimeAgo(DateTime dateTime) {
+  Duration difference = DateTime.now().difference(dateTime);
+
+  if (difference.inDays > 0) {
+    return DateFormat.yMMMd().format(dateTime);
+  } else if (difference.inHours > 0) {
+    return '${difference.inHours} ${difference.inHours == 1 ? 'hour' : 'hours'} ago';
+  } else if (difference.inMinutes > 0) {
+    return '${difference.inMinutes} ${difference.inMinutes == 1 ? 'minute' : 'minutes'} ago';
+  } else {
+    return 'just now';
+  }
 }
