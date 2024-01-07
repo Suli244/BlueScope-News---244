@@ -158,6 +158,7 @@ class _TabWidgetState extends State<TabWidget> {
             itemBuilder: (context, index) => HomeItemWidget(
               model: model[index],
               type: widget.type,
+              index: index,
             ),
           ),
         );

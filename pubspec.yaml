@@ -52,11 +52,11 @@ dependencies:
   hive_flutter: ^1.1.0
   image_picker: ^1.0.6
   path_provider: ^2.1.1
-<<<<<<< HEAD
+
   flutter_staggered_grid_view: ^0.6.2
-=======
+
+  
   another_flushbar: ^1.12.30
->>>>>>> main
 
 dev_dependencies:
   flutter_test:

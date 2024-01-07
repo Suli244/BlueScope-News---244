@@ -13,9 +13,11 @@ class HomeItemWidget extends StatelessWidget {
     super.key,
     required this.model,
     required this.type,
+    required this.index,
   });
   final GetNewsModel model;
   final String type;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -26,6 +28,7 @@ class HomeItemWidget extends StatelessWidget {
             builder: (context) => HomeDetailScreen(
               model: model,
               type: type,
+              index: index,
             ),
           ),
         );

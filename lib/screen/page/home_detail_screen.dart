@@ -1,4 +1,6 @@
+import 'package:bluescope_news_244/core/hive/saved_hive.dart';
 import 'package:bluescope_news_244/logic/get_home_model.dart';
+import 'package:bluescope_news_244/logic/models/saved_model/saved_model.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
@@ -11,9 +13,11 @@ class HomeDetailScreen extends StatefulWidget {
     super.key,
     required this.model,
     required this.type,
+    required this.index,
   });
   final GetNewsModel model;
   final String type;
+  final int index;
 
   @override
   State<HomeDetailScreen> createState() => _HomeDetailScreenState();
@@ -21,6 +25,18 @@ class HomeDetailScreen extends StatefulWidget {
 
 class _HomeDetailScreenState extends State<HomeDetailScreen> {
   bool isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    initIsFavorite();
+  }
+
+  initIsFavorite() async {
+    isFavorite = await SavedHive.hasData(group: widget.type, id: widget.index);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,6 +152,20 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                 padding: EdgeInsets.all(15.h),
                 child: GestureDetector(
                   onTap: () {
+                    if (isFavorite) {
+                      SavedHive.deleteData(
+                          id: widget.index, group: widget.type);
+                    } else {
+                      SavedHive.dataToCache(
+                          group: widget.type,
+                          data: SavedModel(
+                              id: widget.index,
+                              time: widget.model.time,
+                              desciption: widget.model.desription,
+                              title: widget.model.title,
+                              view: widget.model.view,
+                              images: widget.model.image));
+                    }
                     setState(() {
                       isFavorite = !isFavorite;
                     });

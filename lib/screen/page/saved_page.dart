@@ -1,6 +1,7 @@
 import 'package:bluescope_news_244/core/hive/saved_hive.dart';
 import 'package:bluescope_news_244/logic/models/saved_model/saved_data.dart';
 import 'package:bluescope_news_244/logic/models/saved_model/saved_model.dart';
+import 'package:bluescope_news_244/screen/page/saved_detail_page.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -137,14 +138,20 @@ class _SavedPageState extends State<SavedPage> {
                             crossAxisCount: 2,
                             itemBuilder: (context, index) => InkWell(
                               onTap: () async {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             ReferyDetailPage(data: state.data[index])));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SavedDetailPage(
+                                              data: newList.values
+                                                  .toList()[index],
+                                              group:
+                                                  newList.keys.toList()[index],
+                                            )));
                               },
                               child: newList.values.toList()[index] != null
                                   ? Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
