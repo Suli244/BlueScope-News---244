@@ -7,11 +7,12 @@ final class AddPostBody extends StatelessWidget {
   const AddPostBody({
     super.key,
     required this.firstCon,
-    required this.bigCon,
+    required this.bigCon, required this.title,
   });
 
   final TextEditingController firstCon;
   final TextEditingController bigCon;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ final class AddPostBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'New post',
+            title,
             style: AppTextStylesBlueScopeNews.s46W700(),
             textScaleFactor: FontSizer.textScaleFactor(context),
           ),

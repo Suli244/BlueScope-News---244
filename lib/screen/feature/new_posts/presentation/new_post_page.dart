@@ -33,6 +33,7 @@ class _NewPostPageState extends State<NewPostPage> {
   late TextEditingController _bigCon;
   late GlobalKey<FormState> _formKey;
   List<String> images = [];
+  List<String> imagesToSave = [];
   final id = math.Random();
   bool error = false;
 
@@ -40,6 +41,7 @@ class _NewPostPageState extends State<NewPostPage> {
   void initState() {
     super.initState();
     images = widget.model?.images ?? [];
+    imagesToSave = widget.model?.images ?? [];
     _firstCon = TextEditingController(text: widget.model?.title ?? '');
     _bigCon = TextEditingController(text: widget.model?.desc ?? '');
     _formKey = GlobalKey<FormState>();
@@ -57,6 +59,12 @@ class _NewPostPageState extends State<NewPostPage> {
               shadowColor: Colors.transparent,
               leading: IconButton(
                 onPressed: () {
+                  // if (images.isEmpty) {
+                  //   ShowMessage.show(context);
+                  //   error = true;
+                  //   setState(() {});
+                  // } else {
+                  // }
                   Navigator.pop(context);
                 },
                 icon: const Icon(
@@ -75,6 +83,7 @@ class _NewPostPageState extends State<NewPostPage> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 AddPostBody(
+                  title: widget.model != null ? 'Edit' : 'New Post',
                   firstCon: _firstCon,
                   bigCon: _bigCon,
                 ),
@@ -159,6 +168,7 @@ class _NewPostPageState extends State<NewPostPage> {
                             textScaleFactor: FontSizer.textScaleFactor(context),
                           ),
                           onPressed: () {
+                            imagesToSave = images;
                             if (_formKey.currentState?.validate() == true &&
                                 images.isNotEmpty) {
                               if (widget.model != null) {
@@ -166,7 +176,7 @@ class _NewPostPageState extends State<NewPostPage> {
                                       widget.model!.copyWith(
                                         title: _firstCon.text,
                                         desc: _bigCon.text,
-                                        images: images,
+                                        images: imagesToSave,
                                       ),
                                     );
                                 Navigator.pushAndRemoveUntil(
@@ -195,7 +205,7 @@ class _NewPostPageState extends State<NewPostPage> {
                                         id: id.nextInt(10000),
                                         title: _firstCon.text,
                                         desc: _bigCon.text,
-                                        images: images,
+                                        images: imagesToSave,
                                       ),
                                     );
                               }
@@ -206,44 +216,7 @@ class _NewPostPageState extends State<NewPostPage> {
                             } else if (images.isEmpty) {
                               error = true;
                               setState(() {});
-                              Flushbar(
-                                backgroundColor: const Color(0xffFD5F50),
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadows: const [
-                                  BoxShadow(
-                                      blurRadius: 10.0,
-                                      color: Color(0xffF0DFE1),
-                                      offset: Offset(0, 4),
-                                      spreadRadius: 5)
-                                ],
-                                margin: const EdgeInsets.symmetric(
-                                  vertical: 16,
-                                  horizontal: 16,
-                                ),
-                                flushbarPosition: FlushbarPosition.TOP,
-                                flushbarStyle: FlushbarStyle.FLOATING,
-                                isDismissible: true,
-                                duration: const Duration(seconds: 2),
-                                padding: const EdgeInsets.all(24),
-                                messageText: Text(
-                                  'Choose Photo',
-                                  style: AppTextStylesBlueScopeNews.s15W700(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                // icon: Image.asset(Images.snackBar),
-                                mainButton: IconButton(
-                                  icon: const Icon(
-                                    Icons.close,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    if (Navigator.canPop(context)) {
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                ),
-                              ).show(context);
+                              ShowMessage.show(context);
                             }
                           },
                         ),
@@ -367,5 +340,48 @@ class PickedImagesWidget extends StatelessWidget {
               },
             ),
     );
+  }
+}
+
+class ShowMessage {
+  static show(BuildContext context) {
+    Flushbar(
+      backgroundColor: const Color(0xffFD5F50),
+      borderRadius: BorderRadius.circular(10),
+      boxShadows: const [
+        BoxShadow(
+            blurRadius: 10.0,
+            color: Color(0xffF0DFE1),
+            offset: Offset(0, 4),
+            spreadRadius: 5)
+      ],
+      margin: const EdgeInsets.symmetric(
+        vertical: 16,
+        horizontal: 16,
+      ),
+      flushbarPosition: FlushbarPosition.TOP,
+      flushbarStyle: FlushbarStyle.FLOATING,
+      isDismissible: true,
+      duration: const Duration(seconds: 2),
+      padding: const EdgeInsets.all(24),
+      messageText: Text(
+        'Choose Photo',
+        style: AppTextStylesBlueScopeNews.s15W700(
+          color: Colors.white,
+        ),
+      ),
+      // icon: Image.asset(Images.snackBar),
+      mainButton: IconButton(
+        icon: const Icon(
+          Icons.close,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          }
+        },
+      ),
+    ).show(context);
   }
 }

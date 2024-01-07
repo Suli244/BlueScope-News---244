@@ -1,6 +1,7 @@
 import 'package:bluescope_news_244/screen/feature/new_posts/data/new_poster_model.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/cubit/new_post_cubit.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/app_loading.dart';
+import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/cached_image_widget.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/font_sizer.dart';
 import 'package:bluescope_news_244/screen/page/your_posts_detail_page.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
@@ -105,16 +106,21 @@ class HomeItemWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (model.images.isNotEmpty)
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                model.images.first,
-                height: 70,
-                width: 60,
-                fit: BoxFit.cover,
-              ),
-            ),
+          model.images.isNotEmpty
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    model.images.first,
+                    height: 70,
+                    width: 60,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : const CachedImageWidget(
+                  image: 'https://via.placeholder.com/171x171',
+                  height: 70,
+                  width: 60,
+                ),
           SizedBox(width: 8.w),
           Expanded(
             child: Column(

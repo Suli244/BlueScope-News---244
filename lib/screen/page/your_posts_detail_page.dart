@@ -1,5 +1,6 @@
 import 'package:bluescope_news_244/screen/feature/new_posts/data/new_poster_model.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/new_post_page.dart';
+import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/cached_image_widget.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/font_sizer.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:flutter/material.dart';
@@ -153,9 +154,9 @@ class YourPostsDetailPage extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               expandedTitleScale: 1,
               title: Padding(
-                padding: const EdgeInsets.only(bottom: 50),
+                padding: const EdgeInsets.only(bottom: 50, right: 16, left: 16),
                 child: Text(
-                  model.title,
+                  truncateString(model.title, 35),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 46,
@@ -165,11 +166,17 @@ class YourPostsDetailPage extends StatelessWidget {
                   textScaleFactor: FontSizer.textScaleFactor(context),
                 ),
               ),
-              background: Image.asset(
-                model.images.first,
-                width: double.maxFinite,
-                fit: BoxFit.cover,
-              ),
+              background: model.images.isEmpty
+                  ? const CachedImageWidget(
+                      image: 'https://via.placeholder.com/171x171',
+                      height: 70,
+                      width: 60,
+                    )
+                  : Image.asset(
+                      model.images.first,
+                      width: double.maxFinite,
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
           SliverToBoxAdapter(
@@ -232,4 +239,19 @@ class YourPostsDetailPage extends StatelessWidget {
       ),
     );
   }
+}
+
+String truncateString(String text, int maxCharacters) {
+  if (text.length <= maxCharacters) {
+    return text;
+  }
+
+  String truncatedText = text.substring(0, maxCharacters);
+  int lastSpaceIndex = truncatedText.lastIndexOf(' ');
+
+  if (lastSpaceIndex != -1) {
+    truncatedText = truncatedText.substring(0, lastSpaceIndex);
+  }
+
+  return '$truncatedText...';
 }
