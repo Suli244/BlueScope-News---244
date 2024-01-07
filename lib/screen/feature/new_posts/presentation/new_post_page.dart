@@ -272,7 +272,7 @@ class PickedImagesWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: const DecorationImage(
                     image: NetworkImage('https://via.placeholder.com/171x171'),
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   ),
                   border: Border.all(
                     color: error ? Colors.red : Colors.transparent,
@@ -312,7 +312,7 @@ class PickedImagesWidget extends StatelessWidget {
                   decoration: ShapeDecoration(
                     image: DecorationImage(
                       image: AssetImage(images[index]),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),

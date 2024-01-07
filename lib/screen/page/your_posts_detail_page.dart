@@ -220,7 +220,7 @@ class YourPostsDetailPage extends StatelessWidget {
                             decoration: ShapeDecoration(
                               image: DecorationImage(
                                 image: AssetImage(image),
-                                fit: BoxFit.fill,
+                                fit: BoxFit.cover,
                               ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
