@@ -74,44 +74,6 @@ class YourPostsDetailPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
-                            width: 93,
-                            height: 40,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 8,
-                            ),
-                            clipBehavior: Clip.antiAlias,
-                            decoration: ShapeDecoration(
-                              color: const Color(0xFFD8E6EF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Image.asset(AppImages.eyeIcon),
-                                const SizedBox(width: 10),
-                                const Flexible(
-                                  child: FittedBox(
-                                    child: Text(
-                                      '3892',
-                                      style: TextStyle(
-                                        color: Color(0xFF181A1B),
-                                        fontSize: 12,
-                                        fontFamily: 'Mulish',
-                                        fontWeight: FontWeight.w500,
-                                        height: 0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
                         ],
                       ),
                     ],
