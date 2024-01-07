@@ -1,3 +1,4 @@
+import 'package:bluescope_news_244/logic/get_home_model.dart';
 import 'package:bluescope_news_244/screen/page/home_detail_screen.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
@@ -7,11 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-const url =
-    'https://www.supersprint.com/public/img/01-504900-504930-504960-504990-505020.jpg';
-
 class HomeItemWidget extends StatelessWidget {
-  const HomeItemWidget({super.key});
+  const HomeItemWidget({
+    super.key,
+    required this.model,
+    required this.type,
+  });
+  final GetNewsModel model;
+  final String type;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -19,7 +23,10 @@ class HomeItemWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomeDetailScreen(),
+            builder: (context) => HomeDetailScreen(
+              model: model,
+              type: type,
+            ),
           ),
         );
       },
@@ -27,7 +34,7 @@ class HomeItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CachedNetworkImage(
-            imageUrl: url,
+            imageUrl: model.image,
             placeholder: (_, url) {
               return SizedBox(
                 height: 72.h,
@@ -51,9 +58,9 @@ class HomeItemWidget extends StatelessWidget {
                 width: 72.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     image: NetworkImage(
-                      url,
+                      model.image,
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -68,7 +75,7 @@ class HomeItemWidget extends StatelessWidget {
               children: [
                 SizedBox(height: 3.h),
                 Text(
-                  'What to know about Mycoplasma, the bacteria behind recent spikes',
+                  model.title,
                   style: AppTextStylesBlueScopeNews.s17W600(),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -84,7 +91,7 @@ class HomeItemWidget extends StatelessWidget {
                     const SizedBox(width: 3),
                     Expanded(
                       child: Text(
-                        '1 hours ago',
+                        model.time,
                         style: AppTextStylesBlueScopeNews.s12W500(
                           color: AppColorsBlueScopeNews.color64717B,
                         ),
@@ -98,7 +105,7 @@ class HomeItemWidget extends StatelessWidget {
                     const SizedBox(width: 3),
                     Expanded(
                       child: Text(
-                        '1006 views',
+                        '${model.view} views',
                         style: AppTextStylesBlueScopeNews.s12W500(
                           color: AppColorsBlueScopeNews.color64717B,
                         ),

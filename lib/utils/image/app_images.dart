@@ -15,6 +15,7 @@ class AppImages {
   static const String arrowLeftIcon = 'assets/images/arrow_left_icon.png';  
   static const String arrowRightIcon = 'assets/images/arrow_right_icon.png';  
   static const String basketIcon = 'assets/images/basket_icon.png';  
+  static const String camera = 'assets/images/camera.png';  
   static const String cameraIcon = 'assets/images/camera_icon.png';  
   static const String clockIcon = 'assets/images/clock_icon.png';  
   static const String editActivIcon = 'assets/images/edit_activ_icon.png';  
@@ -35,6 +36,7 @@ class AppImages {
   static const String onboardingOne = 'assets/images/onboarding_one.png';  
   static const String onboardingTrhee = 'assets/images/onboarding_trhee.png';  
   static const String onboardingTwo = 'assets/images/onboarding_two.png';  
+  static const String premiumImage = 'assets/images/premium_image.png';  
   static const String searchIcon = 'assets/images/search_icon.png';  
   static const String searchSettingIcon = 'assets/images/search_setting_icon.png';  
   static const String settingFilledIcon = 'assets/images/setting_filled_icon.png';  

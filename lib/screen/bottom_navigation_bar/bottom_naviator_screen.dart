@@ -1,5 +1,3 @@
-import 'package:bluescope_news_244/screen/feature/new_posts/domain/hive_helper.dart';
-import 'package:bluescope_news_244/screen/feature/new_posts/presentation/cubit/new_post_cubit.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/new_post_page.dart';
 import 'package:bluescope_news_244/screen/page/home_page.dart';
 import 'package:bluescope_news_244/screen/page/saved_page.dart';
@@ -8,31 +6,42 @@ import 'package:bluescope_news_244/screen/page/your_posts_page.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavigatorScreen extends StatefulWidget {
-  const BottomNavigatorScreen({Key? key}) : super(key: key);
+  const BottomNavigatorScreen({Key? key, this.currentIndex = 0})
+      : super(key: key);
+
+  final int currentIndex;
 
   @override
   State<BottomNavigatorScreen> createState() => _BottomNavigatorState();
 }
 
 class _BottomNavigatorState extends State<BottomNavigatorScreen> {
-  int index = 0;
+  late int index = widget.currentIndex;
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => NewPostCubit(HiveHelperBla()),
-        )
-      ],
-      child: Scaffold(
-        body: pages[index],
-        extendBody: true,
-        bottomNavigationBar: BottomNavigationBar(
+    return Scaffold(
+      body: pages[index],
+      extendBody: true,
+      bottomNavigationBar: Container(
+        height: 106,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              width: 1,
+              color: AppColorsBlueScopeNews.colorD9E6F0,
+            ),
+          ),
+        ),
+        child: BottomNavigationBar(
+          selectedItemColor: AppColorsBlueScopeNews.color2D52D6,
           backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
+          selectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 19,
+          ),
           unselectedFontSize: 0,
           selectedFontSize: 0,
           currentIndex: index,
@@ -43,7 +52,7 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
           },
           items: [
             BottomNavigationBarItem(
-              label: '•',
+              label: index == 0 ? '•' : '',
               icon: Image.asset(
                 AppImages.homeIcon,
                 width: 25,
@@ -56,7 +65,7 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
               ),
             ),
             BottomNavigationBarItem(
-              label: '•',
+              label: index == 1 ? '•' : '',
               icon: Image.asset(
                 AppImages.heartIcon,
                 width: 25,
@@ -69,7 +78,7 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
               ),
             ),
             BottomNavigationBarItem(
-              label: '•',
+              label: index == 2 ? '•' : '',
               icon: Image.asset(
                 AppImages.editIcon,
                 width: 25,
@@ -82,7 +91,7 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
               ),
             ),
             BottomNavigationBarItem(
-              label: '•',
+              label: index == 3 ? '•' : '',
               icon: Image.asset(
                 AppImages.archiveIcon,
                 width: 25,
@@ -95,7 +104,7 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
               ),
             ),
             BottomNavigationBarItem(
-              label: '•',
+              label: index == 4 ? '•' : '',
               icon: Image.asset(
                 AppImages.settingsIcon,
                 width: 25,

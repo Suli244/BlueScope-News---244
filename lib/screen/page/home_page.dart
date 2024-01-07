@@ -27,114 +27,141 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return AppUnfocuserBlueScopeNews(
-      child: Scaffold(
-        body: DefaultTabController(
-          length: 7,
-          child: SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Discover',
-                        style: AppTextStylesBlueScopeNews.s46W700(),
-                      ),
-                      Text(
-                        'News from all over the world',
-                        style: AppTextStylesBlueScopeNews.s15W400(
-                          color: AppColorsBlueScopeNews.color64717B,
+    return BlocProvider(
+      create: (context) => GetHomeCubit(),
+      child: AppUnfocuserBlueScopeNews(
+        child: Scaffold(
+          body: DefaultTabController(
+            length: 7,
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Discover',
+                          style: AppTextStylesBlueScopeNews.s46W700(),
                         ),
-                      ),
-                      SizedBox(height: 32.h),
-                      const TextFieldWidgetSearch(),
-                    ],
+                        Text(
+                          'News from all over the world',
+                          style: AppTextStylesBlueScopeNews.s15W400(
+                            color: AppColorsBlueScopeNews.color64717B,
+                          ),
+                        ),
+                        SizedBox(height: 32.h),
+                        Builder(
+                          builder: (context) => TextFieldWidgetSearch(
+                            onChanged: (val) {
+                              context.read<GetHomeCubit>().searchByName(val);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 26.h),
-                Stack(
-                  fit: StackFit.passthrough,
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: AppColorsBlueScopeNews.colorD9E6F0,
-                            width: 3,
-                          ),
-                        ),
-                      ),
-                    ),
-                    TabBar(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      indicatorColor: AppColorsBlueScopeNews.color2D52D6,
-                      unselectedLabelColor: AppColorsBlueScopeNews.color64717B,
-                      unselectedLabelStyle: AppTextStylesBlueScopeNews.s19W900(
-                        color: AppColorsBlueScopeNews.color64717B,
-                      ),
-                      indicator: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: AppColorsBlueScopeNews.color2D52D6,
-                            width: 3,
-                          ),
-                        ),
-                      ),
-                      indicatorWeight: 10,
-                      labelStyle: AppTextStylesBlueScopeNews.s19W900(),
-                      labelColor: Colors.black,
-                      isScrollable: true,
-                      onTap: (index) {},
-                      tabs: titles.map<Widget>((e) => Text(e)).toList(),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: TabBarView(
-                    children: titles
-                        .map<Widget>(
-                          (e) => BlocProvider(
-                            create: (context) => GetHomeCubit()
-                              ..getData(
-                                e.toLowerCase(),
-                              ),
-                            child: BlocBuilder<GetHomeCubit, GetHomeState>(
-                              builder: (context, state) {
-                                return state.when(
-                                  loading: () => const Center(
-                                    child: CircularProgressIndicator.adaptive(),
-                                  ),
-                                  error: (error) => Center(
-                                    child: Text(error),
-                                  ),
-                                  success: () => ListView.separated(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 20,
-                                      horizontal: 16,
-                                    ),
-                                    itemCount: 15,
-                                    separatorBuilder: (context, index) =>
-                                        SizedBox(height: 24.h),
-                                    itemBuilder: (context, index) =>
-                                        const HomeItemWidget(),
-                                  ),
-                                );
-                              },
+                  SizedBox(height: 26.h),
+                  Stack(
+                    fit: StackFit.passthrough,
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: AppColorsBlueScopeNews.colorD9E6F0,
+                              width: 3,
                             ),
                           ),
-                        )
-                        .toList(),
+                        ),
+                      ),
+                      TabBar(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        indicatorColor: AppColorsBlueScopeNews.color2D52D6,
+                        unselectedLabelColor:
+                            AppColorsBlueScopeNews.color64717B,
+                        unselectedLabelStyle:
+                            AppTextStylesBlueScopeNews.s19W900(
+                          color: AppColorsBlueScopeNews.color64717B,
+                        ),
+                        indicator: const BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: AppColorsBlueScopeNews.color2D52D6,
+                              width: 3,
+                            ),
+                          ),
+                        ),
+                        indicatorWeight: 10,
+                        labelStyle: AppTextStylesBlueScopeNews.s19W900(),
+                        labelColor: Colors.black,
+                        isScrollable: true,
+                        onTap: (index) {},
+                        tabs: titles.map<Widget>((e) => Text(e)).toList(),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: TabBarView(
+                      children: titles
+                          .map<Widget>(
+                            (e) => TabWidget(type: e.toLowerCase()),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class TabWidget extends StatefulWidget {
+  const TabWidget({super.key, required this.type});
+  final String type;
+
+  @override
+  State<TabWidget> createState() => _TabWidgetState();
+}
+
+class _TabWidgetState extends State<TabWidget> {
+  @override
+  void initState() {
+    context.read<GetHomeCubit>().getNews(widget.type);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<GetHomeCubit, GetHomeState>(
+      builder: (context, state) {
+        return state.when(
+          loading: () => const Center(
+            child: CircularProgressIndicator.adaptive(),
+          ),
+          error: (error) => Center(
+            child: Text(error),
+          ),
+          success: (model) => ListView.separated(
+            padding: const EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: 16,
+            ),
+            itemCount: model.length,
+            separatorBuilder: (context, index) => SizedBox(height: 24.h),
+            itemBuilder: (context, index) => HomeItemWidget(
+              model: model[index],
+              type: widget.type,
+            ),
+          ),
+        );
+      },
     );
   }
 }
