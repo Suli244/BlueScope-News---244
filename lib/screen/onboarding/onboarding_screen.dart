@@ -3,7 +3,6 @@ import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:bluescope_news_244/utils/premium/first_open.dart';
-import 'package:bluescope_news_244/utils/premium/premium.dart';
 import 'package:bluescope_news_244/widgets/custom_button.dart';
 import 'package:bluescope_news_244/widgets/onboarding_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +79,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   onPress: () async {
                     if (currantPage == 2) {
                       await FirstOpenBlueScopeNews.setFirstOpen();
-                      await PremiumWebBlueScopeNews.setPremium();
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

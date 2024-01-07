@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:math' as math;
 
 import 'package:another_flushbar/flushbar.dart';
@@ -217,23 +219,7 @@ class _NewPostPageState extends State<NewPostPage> {
                 images: imagesToSave,
               ),
             );
-        Navigator.pushAndRemoveUntil(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                const BottomNavigatorScreen(currentIndex: 3),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              return child;
-            },
-            transitionDuration: const Duration(
-              seconds: 0,
-            ), // Устанавливаем продолжительность анимации в 0 секунд
-          ),
-          (route) => false,
-        ).then(
-          (value) => context.read<NewPostCubit>().getData(),
-        );
+        pushListPosts();
       } else {
         context.read<NewPostCubit>().saveData(
               NewPosterModel(
@@ -244,6 +230,7 @@ class _NewPostPageState extends State<NewPostPage> {
                 dateTime: DateTime.now(),
               ),
             );
+        pushListPosts();
       }
 
       _firstCon.clear();
@@ -255,6 +242,23 @@ class _NewPostPageState extends State<NewPostPage> {
       ShowMessage.show(context);
     }
   }
+
+  pushListPosts() => Navigator.pushAndRemoveUntil(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const BottomNavigatorScreen(currentIndex: 3),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return child;
+          },
+          transitionDuration: const Duration(
+            seconds: 0,
+          ), // Устанавливаем продолжительность анимации в 0 секунд
+        ),
+        (route) => false,
+      ).then(
+        (value) => context.read<NewPostCubit>().getData(),
+      );
 }
 
 class PickedImagesWidget extends StatelessWidget {
