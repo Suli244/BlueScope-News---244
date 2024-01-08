@@ -2,13 +2,11 @@ import 'package:bluescope_news_244/screen/bottom_navigation_bar/bottom_naviator_
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
-import 'package:bluescope_news_244/utils/premium/first_open.dart';
 import 'package:bluescope_news_244/utils/premium/premium.dart';
 import 'package:bluescope_news_244/widgets/custom_button.dart';
 import 'package:bluescope_news_244/widgets/restore_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:in_app_review/in_app_review.dart';
 
 class PremiumScreen extends StatefulWidget {
   const PremiumScreen({super.key, this.isClose = false});

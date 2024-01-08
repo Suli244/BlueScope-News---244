@@ -1,8 +1,6 @@
-import 'package:bluescope_news_244/logic/models/saved_model/saved_model.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -55,14 +53,15 @@ class SavedDetailPage extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                    bottom: 44,
-                    left: 18,
-                    right: 0,
-                    child: Text(
-                      group,
-                      style: AppTextStylesBlueScopeNews.s46W700(
-                          color: Colors.white),
-                    )),
+                  bottom: 44,
+                  left: 18,
+                  right: 0,
+                  child: Text(
+                    group,
+                    style:
+                        AppTextStylesBlueScopeNews.s46W700(color: Colors.white),
+                  ),
+                ),
                 Positioned(
                   bottom: -7,
                   left: 0,
@@ -90,107 +89,115 @@ class SavedDetailPage extends StatelessWidget {
           SliverToBoxAdapter(
             child: Container(
                 decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(30))),
-                child: Column(
-                  children: [
-                    ListView.separated(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemBuilder: (context, index) => Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: SizedBox(
-                              height: 125.h,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    group,
-                                    style: AppTextStylesBlueScopeNews.s12W500(
-                                      color: AppColorsBlueScopeNews.color64717B,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(30),
+                  ),
+                ),
+                child: SafeArea(
+                  top: false,
+                  child: Column(
+                    children: [
+                      ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        itemBuilder: (context, index) => Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                height: 125.h,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      group,
+                                      style: AppTextStylesBlueScopeNews.s12W500(
+                                        color:
+                                            AppColorsBlueScopeNews.color64717B,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    data[index].title,
-                                    style: AppTextStylesBlueScopeNews.s17W600(),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  SizedBox(height: 8.h),
-                                  Row(
-                                    children: [
-                                      Image.asset(
-                                        AppImages.clockIcon,
-                                        height: 16.h,
-                                        color:
-                                            AppColorsBlueScopeNews.color64717B,
-                                      ),
-                                      const SizedBox(width: 3),
-                                      Expanded(
-                                        child: Text(
-                                          data[index].time,
-                                          style: AppTextStylesBlueScopeNews
-                                              .s12W500(
-                                            color: AppColorsBlueScopeNews
-                                                .color64717B,
+                                    Text(
+                                      data[index].title,
+                                      style:
+                                          AppTextStylesBlueScopeNews.s17W600(),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    SizedBox(height: 8.h),
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          AppImages.clockIcon,
+                                          height: 16.h,
+                                          color: AppColorsBlueScopeNews
+                                              .color64717B,
+                                        ),
+                                        const SizedBox(width: 3),
+                                        Expanded(
+                                          child: Text(
+                                            data[index].time,
+                                            style: AppTextStylesBlueScopeNews
+                                                .s12W500(
+                                              color: AppColorsBlueScopeNews
+                                                  .color64717B,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Image.asset(
-                                        AppImages.eyeIcon,
-                                        height: 16.h,
-                                        color:
-                                            AppColorsBlueScopeNews.color64717B,
-                                      ),
-                                      const SizedBox(width: 3),
-                                      Expanded(
-                                        child: Text(
-                                          '${data[index].view} views',
-                                          style: AppTextStylesBlueScopeNews
-                                              .s12W500(
-                                            color: AppColorsBlueScopeNews
-                                                .color64717B,
+                                        Image.asset(
+                                          AppImages.eyeIcon,
+                                          height: 16.h,
+                                          color: AppColorsBlueScopeNews
+                                              .color64717B,
+                                        ),
+                                        const SizedBox(width: 3),
+                                        Expanded(
+                                          child: Text(
+                                            '${data[index].view} views',
+                                            style: AppTextStylesBlueScopeNews
+                                                .s12W500(
+                                              color: AppColorsBlueScopeNews
+                                                  .color64717B,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 16),
-                          Container(
-                            clipBehavior: Clip.antiAlias,
-                            height: 125.h,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(8)),
-                            child: Image.network(data[index].images),
-                          )
-                        ],
+                            const SizedBox(width: 16),
+                            Container(
+                              clipBehavior: Clip.antiAlias,
+                              height: 125.h,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Image.network(data[index].images),
+                            )
+                          ],
+                        ),
+                        separatorBuilder: (context, index) => Column(
+                          children: [
+                            const SizedBox(height: 16),
+                            Divider(
+                              height: 1,
+                              color: Colors.grey.shade300,
+                            ),
+                            const SizedBox(height: 16),
+                          ],
+                        ),
+                        itemCount: data.length,
                       ),
-                      separatorBuilder: (context, index) => Column(
-                        children: [
-                          const SizedBox(height: 16),
-                          Divider(
-                            height: 1,
-                            color: Colors.grey.shade300,
-                          ),
-                          const SizedBox(height: 16),
-                        ],
-                      ),
-                      itemCount: data.length,
-                    ),
-                    SizedBox(
-                      height: 16.h,
-                    )
-                  ],
+                      SizedBox(
+                        height: 26.h,
+                      )
+                    ],
+                  ),
                 )
                 // SingleChildScrollView(
                 //   child: Column(

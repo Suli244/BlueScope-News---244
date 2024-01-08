@@ -12,6 +12,7 @@ import 'package:bluescope_news_244/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 class YourPostsPage extends StatefulWidget {
   const YourPostsPage({super.key});
@@ -59,9 +60,24 @@ class _YourPostsPageState extends State<YourPostsPage> {
                           loading: () => const AppLoadingWidget(),
                           error: (v) => Center(child: Text(v)),
                           loaded: (models) => models.isEmpty
-                              ? const Center(
-                                  child: Text(
-                                    'You have no published posts',
+                              ? Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "You have no published posts",
+                                        style: AppTextStylesBlueScopeNews
+                                            .s28W700(),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      const SizedBox(height: 32),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 100),
+                                        child: LottieBuilder.asset(
+                                            'assets/images/empty_lottie.json'),
+                                      ),
+                                    ],
                                   ),
                                 )
                               : ListView.separated(

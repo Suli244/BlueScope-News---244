@@ -54,6 +54,7 @@ class _NewPostPageState extends State<NewPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       extendBody: false,
       resizeToAvoidBottomInset: true,
       appBar: widget.model != null

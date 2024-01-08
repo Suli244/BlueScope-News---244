@@ -1,12 +1,15 @@
 import 'package:bluescope_news_244/core/hive/saved_hive.dart';
 import 'package:bluescope_news_244/logic/get_home_model.dart';
 import 'package:bluescope_news_244/logic/models/saved_model/saved_model.dart';
+import 'package:bluescope_news_244/screen/premium/premium_screen.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
+import 'package:bluescope_news_244/utils/premium/premium.dart';
 import 'package:bluescope_news_244/widgets/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeDetailScreen extends StatefulWidget {
   const HomeDetailScreen({
@@ -25,15 +28,32 @@ class HomeDetailScreen extends StatefulWidget {
 
 class _HomeDetailScreenState extends State<HomeDetailScreen> {
   bool isFavorite = false;
+  bool isPremium = false;
+  List<dynamic> values = [];
 
   @override
   void initState() {
     super.initState();
     initIsFavorite();
+    getList();
   }
 
   initIsFavorite() async {
     isFavorite = await SavedHive.hasData(group: widget.type, id: widget.index);
+    isPremium = await PremiumWebBlueScopeNews.getPremium();
+
+    setState(() {});
+  }
+
+  getList() async {
+    values.clear();
+    final box = await Hive.openBox<Map<dynamic, dynamic>>('saved');
+    Map<dynamic, dynamic>? savedList = box.get('saved');
+    savedList?.forEach((key, value) {
+      if (value.isNotEmpty) {
+        values.addAll(value);
+      }
+    });
     setState(() {});
   }
 
@@ -151,27 +171,41 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
               Padding(
                 padding: EdgeInsets.all(15.h),
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    await getList();
                     if (isFavorite) {
                       SavedHive.deleteData(
                           id: widget.index, group: widget.type);
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
                     } else {
-                      SavedHive.dataToCache(
+                      if (!isPremium && values.length == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const PremiumScreen(
+                              isClose: true,
+                            ),
+                          ),
+                        );
+                      } else {
+                        SavedHive.dataToCache(
                           group: widget.type,
                           data: SavedModel(
-                              id: widget.index,
-                              time: widget.model.time,
-                              desciption: widget.model.desription,
-                              title: widget.model.title,
-                              view: widget.model.view,
-                              images: widget.model.image));
+                            id: widget.index,
+                            time: widget.model.time,
+                            desciption: widget.model.desription,
+                            title: widget.model.title,
+                            view: widget.model.view,
+                            images: widget.model.image,
+                          ),
+                        );
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                      }
                     }
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-
-                    ///////////////////////////////////
-                    ///Здесь логика Чики
                   },
                   child: isFavorite
                       ? Image.asset(
@@ -189,19 +223,19 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
               const SizedBox(width: 20),
             ],
             backgroundColor: Colors.white,
-            expandedHeight: 350.h,
+            expandedHeight: context.height / 2.h,
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(
                 children: [
                   Image.network(
                     widget.model.image,
                     width: double.infinity,
-                    height: 360.h,
+                    height: context.height / 2.h + 20,
                     fit: BoxFit.cover,
                   ),
                   Container(
                     width: double.infinity,
-                    height: 360.h,
+                    height: context.height / 2.h,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
