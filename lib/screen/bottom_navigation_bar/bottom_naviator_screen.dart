@@ -6,6 +6,7 @@ import 'package:bluescope_news_244/screen/page/your_posts_page.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/utils/image/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottomNavigatorScreen extends StatefulWidget {
   const BottomNavigatorScreen({Key? key, this.currentIndex = 0})
@@ -25,7 +26,7 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
       body: pages[index],
       extendBody: true,
       bottomNavigationBar: Container(
-        height: 106,
+        height: 96.h,
         width: double.infinity,
         decoration: const BoxDecoration(
           border: Border(
