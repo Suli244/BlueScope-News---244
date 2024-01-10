@@ -2,7 +2,6 @@ import 'package:bluescope_news_244/screen/feature/new_posts/data/new_poster_mode
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/cubit/new_post_cubit.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/app_loading.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/cached_image_widget.dart';
-import 'package:bluescope_news_244/screen/feature/new_posts/presentation/widgets/font_sizer.dart';
 import 'package:bluescope_news_244/screen/page/your_posts_detail_page.dart';
 import 'package:bluescope_news_244/style/app_colors.dart';
 import 'package:bluescope_news_244/style/app_text_styles.dart';
@@ -45,7 +44,6 @@ class _YourPostsPageState extends State<YourPostsPage> {
                   Text(
                     'Your posts',
                     style: AppTextStylesBlueScopeNews.s46W700(),
-                    textScaleFactor: FontSizer.textScaleFactor(context),
                   ),
                   const SizedBox(height: 32),
                   TextFieldWidgetSearch(
@@ -72,8 +70,8 @@ class _YourPostsPageState extends State<YourPostsPage> {
                                       ),
                                       const SizedBox(height: 32),
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 100),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 100.w),
                                         child: LottieBuilder.asset(
                                             'assets/images/empty_lottie.json'),
                                       ),
@@ -127,15 +125,15 @@ class HomeItemWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
                     model.images.first,
-                    height: 70,
-                    width: 60,
+                    height: 70.h,
+                    width: 60.w,
                     fit: BoxFit.cover,
                   ),
                 )
-              : const CachedImageWidget(
+              : CachedImageWidget(
                   image: 'https://via.placeholder.com/171x171',
-                  height: 70,
-                  width: 60,
+                  height: 70.h,
+                  width: 60.w,
                 ),
           SizedBox(width: 8.w),
           Expanded(
@@ -148,7 +146,6 @@ class HomeItemWidget extends StatelessWidget {
                   style: AppTextStylesBlueScopeNews.s17W600(),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  textScaleFactor: FontSizer.textScaleFactor(context),
                 ),
                 SizedBox(height: 8.h),
                 Row(
@@ -165,7 +162,6 @@ class HomeItemWidget extends StatelessWidget {
                         style: AppTextStylesBlueScopeNews.s12W500(
                           color: AppColorsBlueScopeNews.color64717B,
                         ),
-                        textScaleFactor: FontSizer.textScaleFactor(context),
                       ),
                     ),
                   ],

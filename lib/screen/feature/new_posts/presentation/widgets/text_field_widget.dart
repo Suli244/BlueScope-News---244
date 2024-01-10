@@ -45,7 +45,15 @@ final class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorHeight: 10.h,
       expands: expands,
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 15.h,
+        fontFamily: 'Mulish',
+        fontWeight: FontWeight.w400,
+        height: 0,
+      ),
       maxLines: maxLines,
       onChanged: onChanged,
       controller: controller,
@@ -69,9 +77,16 @@ final class TextFieldWidget extends StatelessWidget {
         focusedErrorBorder: _errorBorder,
         errorBorder: _errorBorder,
         border: _border,
-        labelStyle: const TextStyle(
-          color: Color(0xFF181A1B),
-          fontSize: 15,
+        hintStyle: TextStyle(
+          color: const Color.fromARGB(255, 143, 151, 153),
+          fontSize: 15.h,
+          fontFamily: 'Mulish',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+        labelStyle: TextStyle(
+          color: const Color(0xFF181A1B),
+          fontSize: 15.h,
           fontFamily: 'Mulish',
           fontWeight: FontWeight.w400,
           height: 0,

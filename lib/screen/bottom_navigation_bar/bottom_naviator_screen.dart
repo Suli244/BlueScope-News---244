@@ -26,7 +26,6 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
       body: pages[index],
       extendBody: true,
       bottomNavigationBar: Container(
-        height: 96.h,
         width: double.infinity,
         decoration: const BoxDecoration(
           border: Border(
@@ -39,9 +38,9 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
         child: BottomNavigationBar(
           selectedItemColor: AppColorsBlueScopeNews.color2D52D6,
           backgroundColor: Colors.white,
-          selectedLabelStyle: const TextStyle(
+          selectedLabelStyle: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 19,
+            fontSize: 19.sp,
           ),
           unselectedFontSize: 0,
           selectedFontSize: 0,
@@ -56,65 +55,65 @@ class _BottomNavigatorState extends State<BottomNavigatorScreen> {
               label: index == 0 ? '•' : '',
               icon: Image.asset(
                 AppImages.homeIcon,
-                width: 25,
+                width: 25.h,
                 color: AppColorsBlueScopeNews.color64717B,
               ),
               activeIcon: Image.asset(
                 AppImages.homeActivIcon,
                 color: AppColorsBlueScopeNews.color2D52D6,
-                width: 25,
+                width: 25.h,
               ),
             ),
             BottomNavigationBarItem(
               label: index == 1 ? '•' : '',
               icon: Image.asset(
                 AppImages.heartIcon,
-                width: 25,
+                width: 25.h,
                 color: AppColorsBlueScopeNews.color64717B,
               ),
               activeIcon: Image.asset(
                 AppImages.heartActivIcon,
                 color: AppColorsBlueScopeNews.color2D52D6,
-                width: 25,
+                width: 25.h,
               ),
             ),
             BottomNavigationBarItem(
               label: index == 2 ? '•' : '',
               icon: Image.asset(
                 AppImages.editIcon,
-                width: 25,
+                width: 25.h,
                 color: AppColorsBlueScopeNews.color64717B,
               ),
               activeIcon: Image.asset(
                 AppImages.editActivIcon,
                 color: AppColorsBlueScopeNews.color2D52D6,
-                width: 25,
+                width: 25.h,
               ),
             ),
             BottomNavigationBarItem(
               label: index == 3 ? '•' : '',
               icon: Image.asset(
                 AppImages.archiveIcon,
-                width: 25,
+                width: 25.h,
                 color: AppColorsBlueScopeNews.color64717B,
               ),
               activeIcon: Image.asset(
                 AppImages.archiveActivIcon,
                 color: AppColorsBlueScopeNews.color2D52D6,
-                width: 25,
+                width: 25.h,
               ),
             ),
             BottomNavigationBarItem(
               label: index == 4 ? '•' : '',
               icon: Image.asset(
                 AppImages.settingsIcon,
-                width: 25,
+                width: 25.h,
                 color: AppColorsBlueScopeNews.color64717B,
               ),
               activeIcon: Image.asset(
                 AppImages.settingsActivIcon,
                 color: AppColorsBlueScopeNews.color2D52D6,
-                width: 25,
+                width: 25.h,
               ),
             ),
           ],

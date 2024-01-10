@@ -180,7 +180,7 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                         isFavorite = !isFavorite;
                       });
                     } else {
-                      if (!isPremium && values.length == 3) {
+                      if (!isPremium && values.length >= 3) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(

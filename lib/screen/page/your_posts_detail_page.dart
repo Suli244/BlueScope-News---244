@@ -18,9 +18,9 @@ class YourPostsDetailPage extends StatelessWidget {
         slivers: [
           SliverAppBar(
             bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(10),
+              preferredSize: Size.fromHeight(10.h),
               child: Container(
-                height: 60,
+                height: 60.h,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -30,7 +30,7 @@ class YourPostsDetailPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -39,10 +39,10 @@ class YourPostsDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 40,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 8,
+                            height: 40.h,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 16.w,
+                              vertical: 8.h,
                             ),
                             clipBehavior: Clip.antiAlias,
                             decoration: ShapeDecoration(
@@ -62,9 +62,9 @@ class YourPostsDetailPage extends StatelessWidget {
                                   child: FittedBox(
                                     child: Text(
                                       formatTimeAgo(model.dateTime),
-                                      style: const TextStyle(
-                                        color: Color(0xFF181A1B),
-                                        fontSize: 12,
+                                      style: TextStyle(
+                                        color: const Color(0xFF181A1B),
+                                        fontSize: 12.h,
                                         fontFamily: 'Mulish',
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -91,33 +91,36 @@ class YourPostsDetailPage extends StatelessWidget {
                     onTap: () => Navigator.pop(context),
                     child: Icon(
                       Icons.arrow_back,
-                      size: 30.sp,
+                      size: 30.h,
                       color: Colors.white,
                     ),
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NewPostPage(model: model),
-                      ),
-                    );
-                  },
-                  child: Image.asset(
-                    AppImages.editIcon,
-                    scale: 3,
+                Padding(
+                  padding: EdgeInsets.only(right: 10.w, top: 10.h),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewPostPage(model: model),
+                        ),
+                      );
+                    },
+                    child: Image.asset(
+                      AppImages.editIcon,
+                      scale: 3,
+                    ),
                   ),
                 ),
               ],
             ),
             backgroundColor: Colors.transparent,
-            expandedHeight: 420,
+            expandedHeight: 420.h,
             flexibleSpace: FlexibleSpaceBar(
               expandedTitleScale: 1,
               title: Padding(
-                padding: const EdgeInsets.only(bottom: 50, right: 16, left: 16),
+                padding: EdgeInsets.only(bottom: 50.h, right: 16.w, left: 16.w),
                 child: Text(
                   truncateString(model.title, 35),
                   style: const TextStyle(
@@ -149,9 +152,9 @@ class YourPostsDetailPage extends StatelessWidget {
                 children: [
                   Text(
                     model.title,
-                    style: const TextStyle(
-                      color: Color(0xFF181A1B),
-                      fontSize: 19,
+                    style: TextStyle(
+                      color: const Color(0xFF181A1B),
+                      fontSize: 19.h,
                       fontFamily: 'Mulish',
                       fontWeight: FontWeight.w900,
                       overflow: TextOverflow.ellipsis,
@@ -162,9 +165,9 @@ class YourPostsDetailPage extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     model.desc,
-                    style: const TextStyle(
-                      color: Color(0xFF63717B),
-                      fontSize: 15,
+                    style: TextStyle(
+                      color: const Color(0xFF63717B),
+                      fontSize: 15.h,
                       fontFamily: 'Mulish',
                       fontWeight: FontWeight.w400,
                       overflow: TextOverflow.ellipsis,
@@ -198,7 +201,7 @@ class YourPostsDetailPage extends StatelessWidget {
                       );
                     },
                   ),
-                  const SizedBox(height: 40),
+                  SizedBox(height: 40.h),
                 ],
               ),
             ),

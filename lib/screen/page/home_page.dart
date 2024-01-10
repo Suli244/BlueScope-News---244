@@ -149,9 +149,9 @@ class _TabWidgetState extends State<TabWidget> {
             child: Text(error),
           ),
           success: (model) => ListView.separated(
-            padding: const EdgeInsets.symmetric(
-              vertical: 20,
-              horizontal: 16,
+            padding: EdgeInsets.symmetric(
+              vertical: 20.h,
+              horizontal: 16.w,
             ),
             itemCount: model.length,
             separatorBuilder: (context, index) => SizedBox(height: 24.h),

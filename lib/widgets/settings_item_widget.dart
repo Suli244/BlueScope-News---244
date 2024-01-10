@@ -8,7 +8,9 @@ class SettingsItemWidget extends StatelessWidget {
   const SettingsItemWidget({
     super.key,
     required this.title,
-    required this.onTap, this.top, this.bottom,
+    required this.onTap,
+    this.top,
+    this.bottom,
   });
   final String title;
   final Function() onTap;
@@ -35,7 +37,7 @@ class SettingsItemWidget extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.h),
             child: Row(
               children: [
                 Text(
@@ -46,8 +48,8 @@ class SettingsItemWidget extends StatelessWidget {
                 const Spacer(),
                 Image.asset(
                   AppImages.arrowRightIcon,
-                  width: 27,
-                  height: 27,
+                  width: 27.h,
+                  height: 27.h,
                 ),
               ],
             ),

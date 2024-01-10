@@ -139,8 +139,8 @@ class _SavedPageState extends State<SavedPage> {
                                         ),
                                         const SizedBox(height: 32),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 100),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 100.w),
                                           child: LottieBuilder.asset(
                                               'assets/images/empty_lottie.json'),
                                         ),

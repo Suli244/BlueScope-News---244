@@ -7,30 +7,30 @@ abstract class AppTextStylesBlueScopeNews {
   static TextStyle s10Wbold({Color? color}) => TextStyle(
         fontFamily: fonst,
         color: color ?? Colors.black,
-        fontSize: 10,
+        fontSize: 10.sp,
         fontWeight: FontWeight.bold,
       );
   static TextStyle s16W400({Color? color}) => TextStyle(
         fontFamily: fonst,
-        fontSize: 16,
+        fontSize: 16.h,
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
       );
   static TextStyle s16W500({Color? color}) => TextStyle(
         fontFamily: fonst,
-        fontSize: 16,
+        fontSize: 16.sp,
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
       );
   static TextStyle s17W600({Color? color}) => TextStyle(
         fontFamily: fonst,
-        fontSize: 17,
+        fontSize: 17.h,
         fontWeight: FontWeight.w600,
         color: color ?? Colors.black,
       );
   static TextStyle s19W900({Color? color}) => TextStyle(
         fontFamily: fonst,
-        fontSize: 19.sp,
+        fontSize: 19.h,
         fontWeight: FontWeight.w900,
         color: color ?? Colors.black,
       );
@@ -43,7 +43,7 @@ abstract class AppTextStylesBlueScopeNews {
   static TextStyle s12W500({Color? color}) => TextStyle(
         fontFamily: fonst,
         color: color ?? Colors.black,
-        fontSize: 12.sp,
+        fontSize: 12.h,
         fontWeight: FontWeight.w500,
       );
   static TextStyle s14W400({Color? color}) => TextStyle(
@@ -55,7 +55,7 @@ abstract class AppTextStylesBlueScopeNews {
   static TextStyle s15W400({Color? color}) => TextStyle(
         fontFamily: fonst,
         color: color ?? Colors.black,
-        fontSize: 15.sp,
+        fontSize: 15.h,
         fontWeight: FontWeight.w400,
       );
   static TextStyle s15W700({Color? color}) => TextStyle(
@@ -67,13 +67,13 @@ abstract class AppTextStylesBlueScopeNews {
   static TextStyle s28W700({Color? color}) => TextStyle(
         fontFamily: fonst,
         color: color ?? Colors.black,
-        fontSize: 28.sp,
+        fontSize: 28.h,
         fontWeight: FontWeight.w700,
       );
   static TextStyle s46W700({Color? color}) => TextStyle(
         fontFamily: fonst,
         color: color ?? Colors.black,
-        fontSize: 46.sp,
+        fontSize: 46.h,
         fontWeight: FontWeight.w700,
       );
   static TextStyle s57W700({Color? color}) => TextStyle(

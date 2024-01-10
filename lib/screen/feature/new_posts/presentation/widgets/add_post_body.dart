@@ -7,7 +7,8 @@ final class AddPostBody extends StatelessWidget {
   const AddPostBody({
     super.key,
     required this.firstCon,
-    required this.bigCon, required this.title,
+    required this.bigCon,
+    required this.title,
   });
 
   final TextEditingController firstCon;
@@ -24,7 +25,6 @@ final class AddPostBody extends StatelessWidget {
           Text(
             title,
             style: AppTextStylesBlueScopeNews.s46W700(),
-            textScaleFactor: FontSizer.textScaleFactor(context),
           ),
           const SizedBox(height: 32),
           TextFieldWidget(

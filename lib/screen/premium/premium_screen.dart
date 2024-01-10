@@ -46,8 +46,8 @@ class _PremiumScreenState extends State<PremiumScreen> {
                   },
                   child: Image.asset(
                     AppImages.xIcon,
-                    width: 44,
-                    height: 44,
+                    width: 44.h,
+                    height: 44.h,
                     color: AppColorsBlueScopeNews.colorDD3737,
                   ),
                 ),
@@ -108,8 +108,8 @@ class _PremiumScreenState extends State<PremiumScreen> {
                       //   () async {
                       //     if (await Apphud.hasPremiumAccess() ||
                       //         await Apphud.hasActiveSubscription()) {
-                      //       await PremiumContactPlink
-                      //           .buyTradeFuncRestoreContactPlink(context);
+                      //       await PremiumWebBlueScopeNews
+                      //           .buyTradeFuncRestoreBlueScope(context);
                       //       Navigator.pushAndRemoveUntil(
                       //         context,
                       //         MaterialPageRoute(
@@ -127,8 +127,8 @@ class _PremiumScreenState extends State<PremiumScreen> {
                     text: 'PREMIUM FOR \$1,99',
                     textStyle: AppTextStylesBlueScopeNews.s17W600(
                         color: AppColorsBlueScopeNews.colorD9E6F0),
-                    height: 61,
-                    radius: 8,
+                    height: 61.h,
+                    radius: 8.r,
                   ),
                   SizedBox(height: 20.h),
                   const RestoreButtons(),

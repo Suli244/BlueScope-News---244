@@ -51,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
               SettingsItemWidget(
-                top: 16,
+                top: 16.h,
                 title: 'Terms of use',
                 onTap: () {
                   Navigator.push(
@@ -66,7 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
               SettingsItemWidget(
-                top: 16,
+                top: 16.h,
                 title: 'Support',
                 onTap: () {
                   Navigator.push(
@@ -82,8 +82,8 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               if (!isPremiumNews)
                 SettingsItemWidget(
-                  top: 16,
-                  bottom: 16,
+                  top: 16.h,
+                  bottom: 16.h,
                   title: 'Restore',
                   onTap: () async {
                     await PremiumWebBlueScopeNews.buyTradeFuncRestoreBlueScope(

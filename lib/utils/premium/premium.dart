@@ -16,9 +16,7 @@ class PremiumWebBlueScopeNews {
     prefs.setBool('ISBUY', true);
   }
 
-
-  static Future<void> buyTradeFuncRestoreBlueScope(
-      BuildContext context) async {
+  static Future<void> buyTradeFuncRestoreBlueScope(BuildContext context) async {
     final hasPremiumAccess = await Apphud.hasPremiumAccess();
     final hasActiveSubscription = await Apphud.hasActiveSubscription();
     if (hasPremiumAccess || hasActiveSubscription) {
@@ -64,6 +62,4 @@ class PremiumWebBlueScopeNews {
       );
     }
   }
-
-  static buyTradeFuncRestore(BuildContext context) {}
 }

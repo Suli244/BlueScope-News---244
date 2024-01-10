@@ -16,6 +16,7 @@ import 'package:bluescope_news_244/utils/premium/premium.dart';
 import 'package:bluescope_news_244/widgets/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 const pad = EdgeInsets.symmetric(
@@ -80,17 +81,19 @@ class _NewPostPageState extends State<NewPostPage> {
             )
           : null,
       body: SingleChildScrollView(
-        padding: pad,
         child: SafeArea(
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                AddPostBody(
-                  title: widget.model != null ? 'Edit' : 'New Post',
-                  firstCon: _firstCon,
-                  bigCon: _bigCon,
+                Padding(
+                  padding: pad,
+                  child: AddPostBody(
+                    title: widget.model != null ? 'Edit' : 'New Post',
+                    firstCon: _firstCon,
+                    bigCon: _bigCon,
+                  ),
                 ),
                 SizedBox(height: context.height * 0.1),
                 PickedImagesWidget(
@@ -131,7 +134,7 @@ class _NewPostPageState extends State<NewPostPage> {
                             children: [
                               Image.asset(
                                 AppImages.camera,
-                                scale: 5,
+                                height: 20.h,
                               ),
                               const SizedBox(
                                 width: 8,
@@ -140,14 +143,12 @@ class _NewPostPageState extends State<NewPostPage> {
                                 child: FittedBox(
                                   child: Text(
                                     'Add photo',
-                                    style: const TextStyle(
-                                      color: Color(0xFF181A1B),
-                                      fontSize: 19,
+                                    style: TextStyle(
+                                      color: const Color(0xFF181A1B),
+                                      fontSize: 19.h,
                                       fontFamily: 'Mulish',
                                       fontWeight: FontWeight.w900,
                                     ),
-                                    textScaleFactor:
-                                        FontSizer.textScaleFactor(context),
                                   ),
                                 ),
                               ),
@@ -164,13 +165,12 @@ class _NewPostPageState extends State<NewPostPage> {
                           backgroundColor: const Color(0xff2D52D6),
                           child: Text(
                             widget.model != null ? 'Update' : 'Post',
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.white,
-                              fontSize: 19,
+                              fontSize: 19.h,
                               fontFamily: 'Mulish',
                               fontWeight: FontWeight.w900,
                             ),
-                            textScaleFactor: FontSizer.textScaleFactor(context),
                           ),
                           onPressed: () async {
                             imagesToSave = images;
