@@ -45,7 +45,6 @@ final class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorHeight: 10.h,
       expands: expands,
       style: TextStyle(
         color: Colors.black,
