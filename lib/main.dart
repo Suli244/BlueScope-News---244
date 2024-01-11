@@ -1,13 +1,13 @@
 import 'package:apphud/apphud.dart';
 import 'package:bluescope_news_244/core/hive/hive_helper.dart';
 import 'package:bluescope_news_244/logic/models/saved_model/saved_model.dart';
+import 'package:bluescope_news_244/prem_log/prem_log/hakj_model/hakj_model.dart';
+import 'package:bluescope_news_244/prem_log/start_logic.dart';
 import 'package:bluescope_news_244/screen/feature/new_posts/data/new_poster_model.dart';
-import 'package:bluescope_news_244/screen/feature/new_posts/presentation/cubit/new_post_cubit.dart';
 import 'package:bluescope_news_244/screen/splash/splash_screen.dart';
 import 'package:bluescope_news_244/utils/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 
@@ -18,16 +18,8 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(NewPosterModelAdapter());
   Hive.registerAdapter(SavedModelAdapter());
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => NewPostCubit(),
-        )
-      ],
-      child: const MyApp(),
-    ),
-  );
+  Hive.registerAdapter(GudfModelAdapter());
+  await ajhjkasfalsf();
 }
 
 class MyApp extends StatelessWidget {
